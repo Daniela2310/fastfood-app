@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Pro - Fast Food</title>
+    <title>Menú GLL - Fast Food</title>
     <style>
         :root { --red: #FF0000; --yellow: #FFC72C; --green: #25D366; --dark: #1a1a1a; }
         body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; padding-bottom: 100px; }
         
-        /* Header mejorado */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .btn-volver { text-decoration: none; color: var(--red); font-weight: bold; font-size: 0.9rem; border: 1px solid var(--red); padding: 5px 12px; border-radius: 15px; }
 
-        /* Selector de Categorías */
         .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; white-space: nowrap; scrollbar-width: none; }
         .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color: #555; cursor: pointer; border: 1px solid #eee; }
         .cat-item.active { background: var(--red); color: white; border-color: var(--red); }
 
-        /* Grid de Productos */
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; padding: 0 20px; }
         .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; transition: transform 0.2s; }
-        .card:active { transform: scale(0.96); }
         
-        /* Badge de Oferta */
         .badge { position: absolute; top: 10px; left: 10px; background: var(--yellow); color: black; padding: 4px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: 800; z-index: 2; }
 
         .card img { width: 100%; height: 140px; object-fit: cover; }
@@ -31,25 +26,23 @@
         .price { color: var(--red); font-weight: 700; font-size: 1.1rem; margin: 5px 0; display: block; }
         .btn-add { background: var(--dark); color: white; border: none; padding: 8px; width: 100%; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 0.8rem; }
 
-        /* Carrito Animado */
-        .cart-bar { position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--dark); color: white; padding: 15px 20px; border-radius: 25px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 200; transform: translateY(0); transition: 0.3s; }
+        .cart-bar { position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--dark); color: white; padding: 15px 20px; border-radius: 25px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 200; }
         .btn-order { background: var(--green); color: white; padding: 10px 20px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
         
-        #cart-count { background: var(--yellow); color: black; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.7rem; margin-left: 5px; transition: 0.3s; }
-        .bump { transform: scale(1.3); }
+        #cart-count { background: var(--yellow); color: black; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.7rem; margin-left: 5px; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="index.html" class="btn-volver">← INICIO</a>
+    <a href="index.html" class="btn-volver">← VOLVER</a>
     <h2 style="font-size: 1rem; margin: 0;">GLL FAST FOOD</h2>
     <div style="width: 60px;"></div>
 </header>
 
 <div class="categories">
     <div class="cat-item active">Todos</div>
-    <div class="cat-item">Burgers</div>
+    <div class="cat-item">Hamburguesas</div>
     <div class="cat-item">Papas</div>
     <div class="cat-item">Bebidas</div>
 </div>
@@ -57,11 +50,11 @@
 <div class="menu-grid">
     <div class="card">
         <div class="badge">MÁS VENDIDO</div>
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Burger">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Hamburguesa">
         <div class="card-info">
-            <h3>Clásica Cheese</h3>
-            <span class="price">$5.99</span>
-            <button class="btn-add" onclick="addToCart('Clásica Cheese', 5.99)">+ Agregar</button>
+            <h3>Hamburguesa Queso</h3>
+            <span class="price">5,99 €</span>
+            <button class="btn-add" onclick="addToCart('Hamburguesa Queso', 5.99)">+ Añadir</button>
         </div>
     </div>
 
@@ -69,8 +62,8 @@
         <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400" alt="Papas">
         <div class="card-info">
             <h3>Papas Crujientes</h3>
-            <span class="price">$2.50</span>
-            <button class="btn-add" onclick="addToCart('Papas Crujientes', 2.50)">+ Agregar</button>
+            <span class="price">2,50 €</span>
+            <button class="btn-add" onclick="addToCart('Papas Crujientes', 2.50)">+ Añadir</button>
         </div>
     </div>
 
@@ -78,16 +71,16 @@
         <div class="badge" style="background: #00d2ff; color: white;">NUEVO</div>
         <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400" alt="Bebida">
         <div class="card-info">
-            <h3>Jugo Natural</h3>
-            <span class="price">$1.99</span>
-            <button class="btn-add" onclick="addToCart('Jugo Natural', 1.99)">+ Agregar</button>
+            <h3>Refresco Grande</h3>
+            <span class="price">1,99 €</span>
+            <button class="btn-add" onclick="addToCart('Refresco Grande', 1.99)">+ Añadir</button>
         </div>
     </div>
 </div>
 
 <div class="cart-bar" id="cart-bar" style="display: none;">
     <div>
-        <strong>Total: $<span id="cart-total">0.00</span></strong>
+        <strong>Total: <span id="cart-total">0.00</span> €</strong>
         <span id="cart-count">0</span>
     </div>
     <a href="#" class="btn-order" onclick="sendWhatsApp()">PEDIR AHORA</a>
@@ -101,24 +94,14 @@
         cart.push(name);
         total += price;
         
-        // Actualizar UI
-        const totalEl = document.getElementById('cart-total');
-        const countEl = document.getElementById('cart-count');
-        const bar = document.getElementById('cart-bar');
-        
-        totalEl.innerText = total.toFixed(2);
-        countEl.innerText = cart.length;
-        bar.style.display = 'flex';
-
-        // Animación "Bump"
-        countEl.classList.add('bump');
-        setTimeout(() => countEl.classList.remove('bump'), 300);
+        document.getElementById('cart-total').innerText = total.toFixed(2).replace('.', ',');
+        document.getElementById('cart-count').innerText = cart.length;
+        document.getElementById('cart-bar').style.display = 'flex';
     }
 
     function sendWhatsApp() {
         if (cart.length === 0) return;
         
-        // Formatear el mensaje
         let itemsCount = {};
         cart.forEach(x => itemsCount[x] = (itemsCount[x] || 0) + 1);
         
@@ -127,7 +110,8 @@
             pedidoTexto += `- ${itemsCount[item]}x ${item}%0A`;
         }
 
-        let text = `¡Hola! Quisiera hacer un pedido:%0A%0A${pedidoTexto}%0A*Total: $${total.toFixed(2)}*%0A%0A¿Me confirman el tiempo de entrega?`;
+        let totalFormateado = total.toFixed(2).replace('.', ',');
+        let text = `¡Hola! Quisiera hacer un pedido:%0A%0A${pedidoTexto}%0A*Total: ${totalFormateado} €*%0A%0A¿Me confirman el tiempo de entrega?`;
         window.open("https://wa.me/34655990610?text=" + text, "_blank");
     }
 </script>
