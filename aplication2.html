@@ -3,123 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Luifer Fast Food</title>
+    <title>Menú - Luifer Fast Food</title>
     <style>
         :root { --red: #FF0000; --yellow: #FFC72C; --green: #25D366; --dark: #1a1a1a; }
-        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; padding-bottom: 110px; }
-        
-        /* Cabecera */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f8f9fa; padding-bottom: 110px; }
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .btn-volver { text-decoration: none; color: var(--red); font-weight: bold; font-size: 0.9rem; border: 1px solid var(--red); padding: 5px 12px; border-radius: 15px; }
-
-        /* Categorías */
-        .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; white-space: nowrap; scrollbar-width: none; }
-        .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color: #555; cursor: pointer; border: 1px solid #eee; }
-        .cat-item.active { background: var(--red); color: white; border-color: var(--red); }
-
-        /* Grid de Productos */
+        .btn-volver { text-decoration: none; color: var(--red); font-weight: bold; border: 1px solid var(--red); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; }
+        .promo-banner { background: var(--yellow); padding: 8px; text-align: center; font-size: 0.8rem; font-weight: bold; }
+        .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
+        .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid #eee; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; padding: 0 20px; }
-        .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; transition: transform 0.2s; }
-        .badge { position: absolute; top: 10px; left: 10px; background: var(--yellow); color: black; padding: 4px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: 800; z-index: 2; }
-        .card img { width: 100%; height: 140px; object-fit: cover; }
-        .card-info { padding: 12px; }
-        .card-info h3 { margin: 0; font-size: 1rem; color: var(--dark); }
-        .price { color: var(--red); font-weight: 700; font-size: 1.1rem; margin: 5px 0; display: block; }
-        
-        /* Botón de Añadir */
-        .btn-add { background: var(--dark); color: white; border: none; padding: 10px; width: 100%; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .btn-add:active { background: var(--red); }
-
-        /* BARRA DEL CARRITO (La que no veías) */
-        .cart-bar { 
-            position: fixed; bottom: 20px; left: 15px; right: 15px; 
-            background: var(--dark); color: white; padding: 15px 20px; 
-            border-radius: 25px; display: none; /* Se activa con JS */
-            justify-content: space-between; align-items: center; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 200; 
-        }
-        .btn-order { background: var(--green); color: white; padding: 10px 20px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-        #cart-count { background: var(--yellow); color: black; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; margin-left: 10px; font-weight: bold; }
+        .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
+        .badge { position: absolute; top: 10px; left: 10px; background: var(--red); color: white; padding: 4px 8px; border-radius: 8px; font-size: 0.6rem; font-weight: 800; }
+        .card img { width: 100%; height: 130px; object-fit: cover; }
+        .card-info { padding: 10px; }
+        .card-info h3 { margin: 0; font-size: 0.9rem; }
+        .price { color: var(--red); font-weight: 700; font-size: 1rem; margin: 5px 0; display: block; }
+        .btn-add { background: var(--dark); color: white; border: none; padding: 8px; width: 100%; border-radius: 10px; font-weight: 600; cursor: pointer; }
+        .cart-bar { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--dark); color: white; padding: 15px 20px; border-radius: 25px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 200; }
+        .btn-order { background: var(--green); color: white; padding: 10px 15px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-
-<header>
-    <a href="index.html" class="btn-volver">← VOLVER</a>
-    <h2 style="font-size: 1rem; margin: 0;">LUIFER FAST FOOD</h2>
-    <div style="width: 60px;"></div>
-</header>
-
-<div class="categories">
-    <div class="cat-item active">Todos</div>
-    <div class="cat-item">Hamburguesas</div>
-    <div class="cat-item">Papas</div>
-    <div class="cat-item">Bebidas</div>
-</div>
-
-<div class="menu-grid">
-    <div class="card">
-        <div class="badge">TOP VENTAS</div>
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Hamburguesa">
-        <div class="card-info">
-            <h3>Burger Luifer</h3>
-            <span class="price">6,50 €</span>
-            <button class="btn-add" onclick="addToCart('Burger Luifer', 6.50)">+ Añadir</button>
-        </div>
+    <header>
+        <a href="index.html" class="btn-volver">← VOLVER</a>
+        <strong style="font-size: 0.9rem;">MENÚ LUIFER</strong>
+        <a href="contacto.html" style="text-decoration:none; font-size:0.8rem; color:#666;">INFO 📍</a>
+    </header>
+    <div class="promo-banner">🔥 ¡Papas GRATIS en tu primer pedido! 🔥</div>
+    <div class="categories">
+        <div class="cat-item" style="background:var(--red); color:white;">Todos</div>
+        <div class="cat-item">Hamburguesas</div>
+        <div class="cat-item">Papas</div>
+        <div class="cat-item">Bebidas</div>
     </div>
-
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400" alt="Papas">
-        <div class="card-info">
-            <h3>Papas Supremas</h3>
-            <span class="price">3,00 €</span>
-            <button class="btn-add" onclick="addToCart('Papas Supremas', 3.00)">+ Añadir</button>
-        </div>
+    <div class="menu-grid">
+        <div class="card"><div class="badge">TOP</div><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400"><div class="card-info"><h3>Burger Luifer</h3><span class="price">6,50 €</span><button class="btn-add" onclick="addToCart('Burger Luifer', 6.50)">+ Añadir</button></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400"><div class="card-info"><h3>Papas Supremas</h3><span class="price">3,50 €</span><button class="btn-add" onclick="addToCart('Papas Supremas', 3.50)">+ Añadir</button></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1544145945-f904253d0c71?w=400"><div class="card-info"><h3>Refresco 33cl</h3><span class="price">2,00 €</span><button class="btn-add" onclick="addToCart('Refresco 33cl', 2.00)">+ Añadir</button></div></div>
+        <div class="card"><div class="badge" style="background:var(--yellow); color:black;">NUEVO</div><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400"><div class="card-info"><h3>Brownie Casero</h3><span class="price">4,00 €</span><button class="btn-add" onclick="addToCart('Brownie Casero', 4.00)">+ Añadir</button></div></div>
     </div>
-</div>
-
-<div class="cart-bar" id="cart-bar">
-    <div>
-        <strong>Total: <span id="cart-total">0,00</span> €</strong>
-        <span id="cart-count">0</span>
+    <div class="cart-bar" id="cart-bar">
+        <div><strong>Total: <span id="cart-total">0,00</span> €</strong> <span id="cart-count" style="background:var(--yellow); color:black; padding:2px 6px; border-radius:10px; font-size:10px;">0</span></div>
+        <a href="#" class="btn-order" onclick="sendWhatsApp()">PEDIR WHATSAPP</a>
     </div>
-    <a href="#" class="btn-order" onclick="sendWhatsApp()">PEDIR POR WHATSAPP</a>
-</div>
-
-<script>
-    let cart = [];
-    let total = 0;
-
-    function addToCart(name, price) {
-        cart.push(name);
-        total += price;
-        
-        // Actualizar visualmente
-        document.getElementById('cart-total').innerText = total.toFixed(2).replace('.', ',');
-        document.getElementById('cart-count').innerText = cart.length;
-        
-        // MOSTRAR LA BARRA (Esto soluciona tu problema)
-        document.getElementById('cart-bar').style.display = 'flex';
-    }
-
-    function sendWhatsApp() {
-        if (cart.length === 0) return;
-        
-        // Agrupar productos repetidos
-        let resumen = {};
-        cart.forEach(item => resumen[item] = (resumen[item] || 0) + 1);
-        
-        let textoPedido = "";
-        for(let producto in resumen) {
-            textoPedido += `- ${resumen[producto]}x ${producto}%0A`;
+    <script>
+        let cart = []; let total = 0;
+        function addToCart(n, p) { 
+            cart.push(n); total += p; 
+            document.getElementById('cart-total').innerText = total.toFixed(2).replace('.', ',');
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('cart-bar').style.display = 'flex';
         }
-
-        let totalFinal = total.toFixed(2).replace('.', ',');
-        let mensaje = `¡Hola Luifer! Quisiera hacer este pedido:%0A%0A${textoPedido}%0A*Total a pagar: ${totalFinal} €*%0A%0A¿Cuánto tardaría el pedido?`;
-        
-        window.open("https://wa.me/34655990610?text=" + mensaje, "_blank");
-    }
-</script>
-
+        function sendWhatsApp() {
+            let res = {}; cart.forEach(i => res[i] = (res[i] || 0) + 1);
+            let txt = "¡Hola Luifer! Pedido:%0A";
+            for(let p in res) { txt += `- ${res[p]}x ${p}%0A`; }
+            window.open("https://wa.me/34655990610?text=" + txt + "%0A*Total: " + total.toFixed(2).replace('.', ',') + " €*", "_blank");
+        }
+    </script>
 </body>
 </html>
