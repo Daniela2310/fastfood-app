@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Luifer Fast Food</title>
+    <style>
+        :root { --red: #FF0000; --yellow: #FFC72C; --dark: #1a1a1a; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f8f9fa; color: var(--dark); }
+        
+        header { background: var(--red); padding: 15px; display: flex; align-items: center; color: white; }
+        .btn-atras { text-decoration: none; color: white; font-weight: bold; margin-right: 15px; }
+
+        .container { padding: 20px; }
+        .info-card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        
+        h2 { color: var(--red); margin-top: 0; }
+        .social-link { 
+            display: flex; align-items: center; gap: 10px; 
+            text-decoration: none; color: white; background: #E1306C; /* Instagram Color */
+            padding: 12px; border-radius: 12px; margin-top: 10px; font-weight: bold; justify-content: center;
+        }
+        .map-placeholder { 
+            width: 100%; height: 200px; background: #ddd; border-radius: 15px; 
+            display: flex; align-items: center; justify-content: center; color: #777; font-weight: bold;
+            margin-top: 10px; border: 2px dashed #bbb;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="btn-atras">← VOLVER</a>
+    <h1 style="font-size: 1.2rem; margin: 0;">LUIFER FAST FOOD</h1>
+</header>
+
+<div class="container">
+    <div class="info-card">
+        <h2>📍 Dónde estamos</h2>
+        <p>Calle Falsa 123, Tu Ciudad, España.</p>
+        <div class="map-placeholder">MAPA DE GOOGLE AQUÍ</div>
+    </div>
+
+    <div class="info-card">
+        <h2>⏰ Horario</h2>
+        <p><strong>Lunes:</strong> Cerrado</p>
+        <p><strong>Martes a Domingo:</strong> 19:00 - 23:30</p>
+    </div>
+
+    <div class="info-card">
+        <h2>📱 Síguenos</h2>
+        <p>¡Subimos ofertas exclusivas todos los días!</p>
+        <a href="https://instagram.com/tu_usuario" class="social-link">SÍGUENOS EN INSTAGRAM</a>
+    </div>
+
+    <div style="text-align: center; padding: 20px; font-size: 0.8rem; color: #999;">
+        Luifer Fast Food © 2025<br>Creado con orgullo.
+    </div>
+</div>
+
+</body>
+</html>
