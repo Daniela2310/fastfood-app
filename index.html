@@ -3,62 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>GLL Digital Design - Fast Food App</title>
-    
+    <title>Fast Food App - GLL Digital</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FF0000"> 
-    
+    <meta name="theme-color" content="#FF0000">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column; /* Esto permite que el header esté arriba y el iframe abajo */
-        }
-
-        header {
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 10px; 
-            background: #FF0000;
-            z-index: 100; /* Asegura que el botón siempre esté por encima del diseño */
-        }
-
-        /* Iframe ajustado para que no tape el botón */
-        iframe {
-            border: none;
-            width: 100%;
-            flex-grow: 1; /* El iframe ocupa todo el espacio sobrante */
-            display: block;
-        }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; font-family: sans-serif; display: flex; flex-direction: column; }
+        header { background: #FF0000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
+        .logo { display: flex; align-items: center; gap: 10px; color: white; font-weight: bold; }
+        .logo img { height: 40px; border-radius: 50%; background: white; }
+        .btn-menu { background: #FFC72C; color: black; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        iframe { border: none; width: 100%; flex-grow: 1; }
     </style>
 </head>
 <body>
-
     <header>
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="fast food(1).png" style="height: 40px; border-radius: 5px;">
-            <span style="color: white; font-weight: bold; font-family: sans-serif;">FAST FOOD APP</span>
+        <div class="logo">
+            <img src="fast food(1).png" alt="Logo">
+            <span>FAST FOOD APP</span>
         </div>
-        <a href="aplication2.html" style="background: #FFC72C; color: black; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 14px; font-family: sans-serif;">
-            Ver Menú Completo →
-        </a>
+        <a href="aplication2.html" class="btn-menu">VER MENÚ Y PEDIR →</a>
     </header>
-
-    <iframe 
-        src="https://embed.figma.com/design/wMYUxh7Dt0PQgZDTQ8FG3u/Untitled?node-id=1-8&embed-host=share&kind=proto&hotspotHints=0&hide-ui=1" 
-        allowfullscreen>
-    </iframe>
-
+    <iframe src="https://embed.figma.com/design/wMYUxh7Dt0PQgZDTQ8FG3u/Untitled?node-id=1-8&embed-host=share&kind=proto&hotspotHints=0&hide-ui=1" allowfullscreen></iframe>
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(err => console.log("Error reg sw", err));
-        }
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
     </script>
 </body>
 </html>
+
