@@ -7,29 +7,126 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FF0000">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; }
-        header { background: #FF0000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10; }
-        .logo { display: flex; align-items: center; gap: 8px; color: white; font-weight: bold; font-size: 14px; }
-        .logo img { height: 35px; border-radius: 50%; background: white; border: 2px solid white; }
-        .nav-btns { display: flex; gap: 8px; }
-        .btn { padding: 8px 12px; border-radius: 20px; text-decoration: none; font-weight: 800; font-size: 11px; text-transform: uppercase; }
-        .btn-white { background: white; color: black; border: 1px solid #ccc; }
-        .btn-yellow { background: #FFC72C; color: black; }
-        iframe { border: none; width: 100%; flex-grow: 1; }
+        :root {
+            --red: #FF0000;
+            --yellow: #FFC72C;
+            --dark: #1a1a1a;
+        }
+
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            background-color: #fcfcfc;
+        }
+
+        /* Contenedor Principal */
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Logo Central */
+        .main-logo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 5px solid var(--red);
+            object-fit: contain;
+        }
+
+        h1 {
+            color: var(--dark);
+            font-size: 2rem;
+            margin: 10px 0;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Botones de Acción */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn {
+            padding: 18px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-order {
+            background-color: var(--yellow);
+            color: black;
+        }
+
+        .btn-info {
+            background-color: white;
+            color: var(--dark);
+            border: 2px solid #eee;
+        }
+
+        /* Footer decorativo */
+        .footer-text {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            color: #999;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="fast food(1).png" alt="Logo">
-            <span>LUIFER FAST FOOD</span>
+
+    <div class="hero-container">
+        <img src="fast food(1).png" alt="Luifer Fast Food" class="main-logo">
+
+        <h1>Luifer Fast Food</h1>
+        <p>¡El sabor que te mueve en Torrijos!</p>
+
+        <div class="button-group">
+            <a href="aplication2.html" class="btn btn-order">🚀 HACER PEDIDO</a>
+            <a href="contacto.html" class="btn btn-info">📍 UBICACIÓN Y HORARIOS</a>
         </div>
-        <div class="nav-btns">
-            <a href="contacto.html" class="btn btn-white">INFO</a>
-            <a href="aplication2.html" class="btn btn-yellow">PEDIR →</a>
+
+        <div class="footer-text">
+            Abierto de Martes a Domingo
         </div>
-    </header>
-    <iframe src="https://embed.figma.com/design/wMYUxh7Dt0PQgZDTQ8FG3u/Untitled?node-id=1-8&embed-host=share&kind=proto&hotspotHints=0&hide-ui=1" allowfullscreen></iframe>
-    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }</script>
+    </div>
+
+    <script>
+        // Registro del Service Worker que permite modo offline
+        if ('serviceWorker' in navigator) { 
+            navigator.serviceWorker.register('sw.js'); 
+        }
+    </script>
 </body>
 </html>
