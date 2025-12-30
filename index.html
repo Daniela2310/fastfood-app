@@ -5,127 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Luifer Fast Food - Inicio</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FF0000">
     <style>
-        :root {
-            --red: #FF0000;
-            --yellow: #FFC72C;
-            --dark: #1a1a1a;
-        }
-
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            height: 100%; 
-            width: 100%; 
-            font-family: 'Segoe UI', Roboto, sans-serif; 
-            background-color: #fcfcfc;
-        }
-
-        .hero-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .main-logo {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            border: 5px solid var(--red);
-            object-fit: contain;
-        }
-
-        h1 {
-            color: var(--dark);
-            font-size: 2.2rem;
-            margin: 10px 0;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .highlight {
-            color: var(--red);
-        }
-
-        p {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .btn {
-            padding: 18px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.2s;
-            display: block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .btn:active {
-            transform: scale(0.96);
-        }
-
-        .btn-order {
-            background-color: var(--yellow);
-            color: black;
-        }
-
-        .btn-info {
-            background-color: white;
-            color: var(--dark);
-            border: 2px solid #eee;
-        }
-
-        .footer-text {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            color: #999;
-        }
+        :root { --red: #FF0000; --yellow: #FFC72C; --dark: #1a1a1a; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; background: #fcfcfc; }
+        .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px; }
+        .logo { width: 200px; height: 200px; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h1 { font-size: 2rem; margin: 10px 0; color: var(--dark); }
+        .highlight { color: var(--red); }
+        .btn-group { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin-top: 30px; }
+        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .btn-order { background: var(--yellow); color: black; }
+        .btn-info { background: white; color: var(--dark); border: 2px solid #eee; }
+        .btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
-
-    <div class="hero-container">
-        <img src="fast food(1).png" alt="Luifer Fast Food" class="main-logo">
-
-        <h1>¿Qué hay <span class="highlight">para comer?</span></h1>
-        <p>LUIFER FAST FOOD - TORRIJOS</p>
-
-        <div class="button-group">
-            <a href="aplication2.html" class="btn btn-order">🚀 VER MENÚ Y PEDIR</a>
-            <a href="contacto.html" class="btn btn-info">📍 INFO Y HORARIOS</a>
-        </div>
-
-        <div class="footer-text">
-            Torrijos, Calle Greco.
+    <div class="hero">
+        <img src="fast food(1).png" class="logo">
+        <h1>Luifer <span class="highlight">Fast Food</span></h1>
+        <p>Las mejores burguers de Torrijos</p>
+        <div class="btn-group">
+            <a href="aplication2.html?v=1" class="btn btn-order">🚀 VER MENÚ Y PEDIR</a>
+            <a href="contacto.html" class="btn btn-info">📍 INFO Y HORARIO</a>
         </div>
     </div>
-
-    <script>
-        if ('serviceWorker' in navigator) { 
-            navigator.serviceWorker.register('sw.js'); 
-        }
-    </script>
 </body>
 </html>
