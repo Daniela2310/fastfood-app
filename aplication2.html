@@ -5,26 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú - Luifer Fast Food</title>
     <style>
-        :root { --red: #FF0000; --yellow: #FFC72C; --green: #25D366; --dark: #1a1a1a; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f8f9fa; padding-bottom: 110px; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .btn-volver { text-decoration: none; color: var(--red); font-weight: bold; border: 1px solid var(--red); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; }
-        .promo-banner { background: var(--yellow); padding: 8px; text-align: center; font-size: 0.8rem; font-weight: bold; }
+        :root { 
+            --red: #FF0000; 
+            --yellow: #FFC72C; 
+            --green: #25D366; 
+            --dark: #1a1a1a; 
+            --light: #f8f9fa;
+        }
         
-        /* Categorías añadidas para rellenar */
-        .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
-        .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid #eee; }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            background: var(--light); 
+            padding-bottom: 110px; 
+        }
+
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 20px; 
+            background: white; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        }
+
+        .btn-volver { 
+            text-decoration: none; 
+            color: var(--red); 
+            font-weight: bold; 
+            border: 1px solid var(--red); 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-size: 0.8rem; 
+        }
+
+        .promo-banner { 
+            background: var(--yellow); 
+            padding: 8px; 
+            text-align: center; 
+            font-size: 0.8rem; 
+            font-weight: bold; 
+        }
         
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; padding: 0 20px; }
-        .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
-        .badge { position: absolute; top: 10px; left: 10px; background: var(--red); color: white; padding: 4px 8px; border-radius: 8px; font-size: 0.6rem; font-weight: 800; }
-        .card img { width: 100%; height: 130px; object-fit: cover; }
+        /* Categorías */
+        .categories { 
+            display: flex; 
+            gap: 10px; 
+            overflow-x: auto; 
+            padding: 15px 20px; 
+            scrollbar-width: none; 
+        }
+        
+        .categories::-webkit-scrollbar { display: none; }
+
+        .cat-item { 
+            background: white; 
+            padding: 8px 18px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            white-space: nowrap; 
+            border: 1px solid #eee; 
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cat-item.active {
+            background: var(--red);
+            color: white;
+            border-color: var(--red);
+        }
+        
+        /* Grid de Menú */
+        .menu-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+            gap: 15px; 
+            padding: 0 20px; 
+        }
+
+        .card { 
+            background: white; 
+            border-radius: 18px; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            position: relative; 
+            transition: transform 0.2s;
+        }
+
+        .badge { 
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+            background: var(--red); 
+            color: white; 
+            padding: 4px 8px; 
+            border-radius: 8px; 
+            font-size: 0.6rem; 
+            font-weight: 800; 
+            z-index: 10;
+        }
+
+        .card img { 
+            width: 100%; 
+            height: 130px; 
+            object-fit: cover; 
+        }
+
         .card-info { padding: 10px; }
         .card-info h3 { margin: 0; font-size: 0.9rem; }
-        .price { color: var(--red); font-weight: 700; font-size: 1rem; margin: 5px 0; display: block; }
-        .btn-add { background: var(--dark); color: white; border: none; padding: 8px; width: 100%; border-radius: 10px; font-weight: 600; cursor: pointer; }
-        .cart-bar { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--dark); color: white; padding: 15px 20px; border-radius: 25px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 200; }
-        .btn-order { background: var(--green); color: white; padding: 10px 15px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 0.8rem; }
+        
+        .price { 
+            color: var(--red); 
+            font-weight: 700; 
+            font-size: 1rem; 
+            margin: 5px 0; 
+            display: block; 
+        }
+
+        .btn-add { 
+            background: var(--dark); 
+            color: white; 
+            border: none; 
+            padding: 8px; 
+            width: 100%; 
+            border-radius: 10px; 
+            font-weight: 600; 
+            cursor: pointer; 
+        }
+
+        /* Barra de Carrito */
+        .cart-bar { 
+            position: fixed; 
+            bottom: 20px; 
+            left: 15px; 
+            right: 15px; 
+            background: var(--dark); 
+            color: white; 
+            padding: 15px 20px; 
+            border-radius: 25px; 
+            display: none; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+            z-index: 200; 
+        }
+
+        .btn-order { 
+            background: var(--green); 
+            color: white; 
+            padding: 10px 15px; 
+            border-radius: 15px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 0.8rem; 
+        }
     </style>
 </head>
 <body>
@@ -36,16 +175,16 @@
 
     <div class="promo-banner">🔥 ¡Papas GRATIS en tu primer pedido! 🔥</div>
 
-    <div class="categories">
-        <div class="cat-item" style="background: var(--red); color: white;">Todos</div>
-        <div class="cat-item">Hamburguesas</div>
-        <div class="cat-item">Papas</div>
-        <div class="cat-item">Bebidas</div>
-        <div class="cat-item">Postres</div>
+    <div class="categories" id="category-list">
+        <div class="cat-item active" onclick="filterCategory('todos', this)">Todos</div>
+        <div class="cat-item" onclick="filterCategory('hamburguesas', this)">Hamburguesas</div>
+        <div class="cat-item" onclick="filterCategory('papas', this)">Papas</div>
+        <div class="cat-item" onclick="filterCategory('bebidas', this)">Bebidas</div>
+        <div class="cat-item" onclick="filterCategory('postres', this)">Postres</div>
     </div>
 
-    <div class="menu-grid">
-        <div class="card">
+    <div class="menu-grid" id="menu-container">
+        <div class="card hamburguesas">
             <div class="badge">TOP</div>
             <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400">
             <div class="card-info">
@@ -55,7 +194,7 @@
             </div>
         </div>
         
-        <div class="card">
+        <div class="card papas">
             <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400">
             <div class="card-info">
                 <h3>Papas Supremas</h3>
@@ -64,7 +203,7 @@
             </div>
         </div>
         
-        <div class="card">
+        <div class="card bebidas">
             <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400">
             <div class="card-info">
                 <h3>Refresco 33cl</h3>
@@ -73,7 +212,7 @@
             </div>
         </div>
         
-        <div class="card">
+        <div class="card postres">
             <div class="badge" style="background:var(--yellow); color:black;">NUEVO</div>
             <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400">
             <div class="card-info">
@@ -96,6 +235,30 @@
         let cart = []; 
         let total = 0;
 
+        // Función para filtrar productos
+        function filterCategory(category, element) {
+            // Actualizar estilo de botones
+            document.querySelectorAll('.cat-item').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Filtrar cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (category === 'todos') {
+                    card.style.display = 'block';
+                } else {
+                    if (card.classList.contains(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Función para añadir al carrito
         function addToCart(n, p) { 
             cart.push(n); 
             total += p; 
@@ -104,12 +267,14 @@
             document.getElementById('cart-bar').style.display = 'flex';
         }
 
+        // Función para enviar por WhatsApp
         function sendWhatsApp() {
             if (cart.length === 0) return;
             let res = {}; 
             cart.forEach(i => res[i] = (res[i] || 0) + 1);
             let txt = "¡Hola Luifer! Pedido:%0A";
             for(let p in res) { txt += `- ${res[p]}x ${p}%0A`; }
+            // Número de Torrijos según contacto.html
             window.open("https://wa.me/34655990610?text=" + txt + "%0A*Total: " + total.toFixed(2).replace('.', ',') + " €*", "_blank");
         }
     </script>
