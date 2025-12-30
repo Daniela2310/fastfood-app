@@ -2,32 +2,23 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Luifer Fast Food - Inicio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Luifer Fast Food</title>
     <link rel="manifest" href="manifest.json">
     <style>
         :root { --red: #FF0000; --yellow: #FFC72C; --dark: #1a1a1a; }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; background: #fcfcfc; }
-        .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px; }
-        .logo { width: 200px; height: 200px; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h1 { font-size: 2rem; margin: 10px 0; color: var(--dark); }
-        .highlight { color: var(--red); }
-        .btn-group { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin-top: 30px; }
-        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body { margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; background: #fcfcfc; font-family: sans-serif; }
+        .logo { width: 220px; height: 220px; border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .btn { display: block; width: 280px; padding: 18px; margin: 10px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: 0.2s; }
         .btn-order { background: var(--yellow); color: black; }
         .btn-info { background: white; color: var(--dark); border: 2px solid #eee; }
-        .btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <img src="fast food(1).png" class="logo">
-        <h1>Luifer <span class="highlight">Fast Food</span></h1>
-        <p>Las mejores burguers de Torrijos</p>
-        <div class="btn-group">
-            <a href="aplication2.html?v=1" class="btn btn-order">🚀 VER MENÚ Y PEDIR</a>
-            <a href="contacto.html" class="btn btn-info">📍 INFO Y HORARIO</a>
-        </div>
-    </div>
+    <img src="fast food(1).png" class="logo">
+    <h1>Luifer <span style="color:var(--red)">Fast Food</span></h1>
+    <p>Torrijos - Sabor Irresistible</p>
+    <a href="aplication2.html?v=2" class="btn btn-order">🚀 VER MENÚ Y PEDIR</a>
+    <a href="contacto.html" class="btn btn-info">📍 INFO Y HORARIO</a>
 </body>
 </html>
