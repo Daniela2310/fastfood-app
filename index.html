@@ -22,7 +22,6 @@
             background-color: #fcfcfc;
         }
 
-        /* Contenedor Principal */
         .hero-container {
             display: flex;
             flex-direction: column;
@@ -34,7 +33,6 @@
             box-sizing: border-box;
         }
 
-        /* Logo Central */
         .main-logo {
             width: 220px;
             height: 220px;
@@ -48,10 +46,14 @@
 
         h1 {
             color: var(--dark);
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin: 10px 0;
             font-weight: 800;
             text-transform: uppercase;
+        }
+
+        .highlight {
+            color: var(--red);
         }
 
         p {
@@ -60,7 +62,6 @@
             margin-bottom: 40px;
         }
 
-        /* Botones de Acción */
         .button-group {
             display: flex;
             flex-direction: column;
@@ -95,7 +96,6 @@
             border: 2px solid #eee;
         }
 
-        /* Footer decorativo */
         .footer-text {
             position: absolute;
             bottom: 20px;
@@ -109,21 +109,20 @@
     <div class="hero-container">
         <img src="fast food(1).png" alt="Luifer Fast Food" class="main-logo">
 
-        <h1>Luifer Fast Food</h1>
-        <p>¡El sabor que te mueve en Torrijos!</p>
+        <h1>¿Qué hay <span class="highlight">para comer?</span></h1>
+        <p>LUIFER FAST FOOD - TORRIJOS</p>
 
         <div class="button-group">
-            <a href="aplication2.html" class="btn btn-order">🚀 HACER PEDIDO</a>
-            <a href="contacto.html" class="btn btn-info">📍 UBICACIÓN Y HORARIOS</a>
+            <a href="aplication2.html" class="btn btn-order">🚀 VER MENÚ Y PEDIR</a>
+            <a href="contacto.html" class="btn btn-info">📍 INFO Y HORARIOS</a>
         </div>
 
         <div class="footer-text">
-            Abierto de Martes a Domingo
+            Torrijos, Calle Greco.
         </div>
     </div>
 
     <script>
-        // Registro del Service Worker que permite modo offline
         if ('serviceWorker' in navigator) { 
             navigator.serviceWorker.register('sw.js'); 
         }
