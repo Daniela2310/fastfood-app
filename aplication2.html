@@ -5,35 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Menú - Luifer Fast Food</title>
     <style>
-        :root { --red: #FF0000; --yellow: #FFC72C; --green: #25D366; --dark: #1a1a1a; --gray: #f4f4f4; }
+        :root { --red: #FF0000; --yellow: #FFC72C; --green: #25D366; --dark: #1a1a1a; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f8f9fa; padding-bottom: 120px; }
         
-        /* Navegación */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .btn-volver { text-decoration: none; color: var(--red); font-weight: bold; border: 1px solid var(--red); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; }
         
         /* Categorías */
         .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
-        .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid #eee; cursor: pointer; }
+        .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid #eee; cursor: pointer; transition: 0.3s; }
         .cat-item.active { background: var(--red); color: white; border-color: var(--red); }
         
-        /* Grid */
+        /* Grid de Productos */
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; padding: 0 20px; }
-        .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .card img { width: 100%; height: 130px; object-fit: cover; }
         .card-info { padding: 10px; }
-        .card-info h3 { margin: 0; font-size: 0.9rem; height: 35px; overflow: hidden; }
+        .card-info h3 { margin: 0; font-size: 0.9rem; height: 35px; }
         .price { color: var(--red); font-weight: 700; font-size: 1.1rem; margin: 5px 0; display: block; }
         
         /* Botones */
         .btn-add { background: var(--dark); color: white; border: none; padding: 10px; width: 100%; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .btn-add:active { transform: scale(0.95); }
-
+        
         /* Barra Carrito */
         .cart-bar { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--dark); color: white; padding: 15px 20px; border-radius: 25px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 200; }
-        .cart-info-text { display: flex; flex-direction: column; }
-        .btn-clear { background: none; border: none; color: #aaa; font-size: 10px; text-decoration: underline; padding: 0; text-align: left; cursor: pointer; }
+        .btn-clear { background: none; border: none; color: #aaa; font-size: 10px; text-decoration: underline; cursor: pointer; padding: 0; }
         .btn-order { background: var(--green); color: white; padding: 12px 20px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
     </style>
 </head>
@@ -41,8 +38,8 @@
 
 <header>
     <a href="index.html" class="btn-volver">← VOLVER</a>
-    <strong style="font-size: 0.9rem;">LUIFER MENU</strong>
-    <span id="status-tag" style="font-size: 0.7rem; padding: 4px 8px; border-radius: 10px; background: #eee;">Verificando...</span>
+    <strong style="font-size: 0.9rem;">MENÚ LUIFER</strong>
+    <span id="status-tag" style="font-size: 0.7rem; font-weight: bold;"></span>
 </header>
 
 <div class="categories">
@@ -56,34 +53,25 @@
     <div class="card item-card burger">
         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400">
         <div class="card-info">
-            <h3>Burger Luifer</h3>
+            <h3>Burger Especial</h3>
             <span class="price">6,50 €</span>
-            <button class="btn-add" onclick="addToCart('Burger Luifer', 6.50, this)">+ Añadir</button>
+            <button class="btn-add" onclick="addToCart('Burger Especial', 6.50, this)">+ Añadir</button>
         </div>
     </div>
 
     <div class="card item-card papas">
         <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400">
         <div class="card-info">
-            <h3>Papas Supremas</h3>
+            <h3>Papas Luifer</h3>
             <span class="price">3,50 €</span>
-            <button class="btn-add" onclick="addToCart('Papas Supremas', 3.50, this)">+ Añadir</button>
-        </div>
-    </div>
-
-    <div class="card item-card bebida">
-        <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400">
-        <div class="card-info">
-            <h3>Coca-Cola 33cl</h3>
-            <span class="price">2,00 €</span>
-            <button class="btn-add" onclick="addToCart('Coca-Cola 33cl', 2.00, this)">+ Añadir</button>
+            <button class="btn-add" onclick="addToCart('Papas Luifer', 3.50, this)">+ Añadir</button>
         </div>
     </div>
 </div>
 
 <div class="cart-bar" id="cart-bar">
-    <div class="cart-info-text">
-        <button class="btn-clear" onclick="clearCart()">Vaciar carrito</button>
+    <div>
+        <button class="btn-clear" onclick="clearCart()">Vaciar Carrito</button><br>
         <strong>Total: <span id="cart-total">0,00</span> €</strong>
     </div>
     <a href="#" class="btn-order" onclick="sendWhatsApp()">PEDIR ( <span id="cart-count">0</span> )</a>
@@ -93,7 +81,6 @@
     let cart = [];
     let total = 0;
 
-    // 1. Filtrado de Categorías
     function filterMenu(cat, el) {
         document.querySelectorAll('.cat-item').forEach(b => b.classList.remove('active'));
         el.classList.add('active');
@@ -102,20 +89,16 @@
         });
     }
 
-    // 2. Añadir con Feedback
     function addToCart(name, price, btn) {
         cart.push(name);
         total += price;
         updateUI();
         
         // Feedback visual
-        const prevText = btn.innerText;
-        btn.innerText = "✅ Añadido";
+        const originalText = btn.innerText;
+        btn.innerText = "✅ ¡Añadido!";
         btn.style.background = "var(--green)";
-        setTimeout(() => { 
-            btn.innerText = prevText; 
-            btn.style.background = "var(--dark)"; 
-        }, 700);
+        setTimeout(() => { btn.innerText = originalText; btn.style.background = "var(--dark)"; }, 700);
     }
 
     function updateUI() {
@@ -125,43 +108,36 @@
     }
 
     function clearCart() {
-        if(confirm("¿Vaciar el pedido?")) {
-            cart = []; total = 0; updateUI();
-        }
+        if(confirm("¿Quieres vaciar tu carrito?")) { cart = []; total = 0; updateUI(); }
     }
 
-    // 3. WhatsApp Inteligente
     function sendWhatsApp() {
-        const entrega = confirm("¿Es para entregar a DOMICILIO?\n(Aceptar = Domicilio / Cancelar = Recoger)");
-        const tipo = entrega ? "ENTREGA A DOMICILIO" : "RECOGER EN LOCAL";
-        
+        const entrega = confirm("¿Es para domicilio? (Aceptar = Domicilio / Cancelar = Recoger)");
+        const tipo = entrega ? "DOMICILIO" : "RECOGER EN LOCAL";
         let counts = {};
         cart.forEach(x => counts[x] = (counts[x] || 0) + 1);
         
-        let msg = `*NUEVO PEDIDO - ${tipo}*%0A--------------------------%0A`;
-        for(let item in counts) { msg += `${counts[item]}x ${item}%0A`; }
-        msg += `--------------------------%0A*TOTAL: ${total.toFixed(2)} €*`;
+        let msg = `*NUEVO PEDIDO - ${tipo}*%0A`;
+        for(let item in counts) { msg += `- ${counts[item]}x ${item}%0A`; }
+        msg += `%0A*Total: ${total.toFixed(2)} €*`;
         
         if(entrega) {
-            const dir = prompt("Por favor, introduce tu dirección en Torrijos:");
+            const dir = prompt("Introduce tu dirección:");
             if(!dir) return;
-            msg += `%0A%0A📍 *Dirección:* ${dir}`;
+            msg += `%0A📍 *Dirección:* ${dir}`;
         }
-
         window.open(`https://wa.me/34655990610?text=${msg}`, '_blank');
     }
 
-    // 4. Reloj de estado (Abierto/Cerrado)
+    // Reloj de estado
     function checkStatus() {
         const now = new Date();
         const hour = now.getHours();
-        const min = now.getMinutes();
-        const time = hour + min/60;
         const tag = document.getElementById('status-tag');
-        if(time >= 19 && time <= 23.5) {
+        if(hour >= 19 && hour <= 23) {
             tag.innerText = "● ABIERTO"; tag.style.color = "var(--green)";
         } else {
-            tag.innerText = "○ CERRADO (Abre 19:00)"; tag.style.color = "red";
+            tag.innerText = "○ CERRADO"; tag.style.color = "red";
         }
     }
     checkStatus();
