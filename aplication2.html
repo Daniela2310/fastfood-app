@@ -14,23 +14,22 @@
         /* Categorías */
         .categories { display: flex; gap: 10px; overflow-x: auto; padding: 15px 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
-        .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid #eee; cursor: pointer; transition: 0.3s; }
+        .cat-item { background: white; padding: 8px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid #eee; cursor: pointer; }
         .cat-item.active { background: var(--red); color: white; border-color: var(--red); }
         
         /* Grid de Productos */
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; padding: 0 20px; }
-        .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .card img { width: 100%; height: 130px; object-fit: cover; }
+        .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: block; }
+        .card img { width: 100%; height: 130px; object-fit: cover; background: #eee; }
         .card-info { padding: 10px; }
         .card-info h3 { margin: 0; font-size: 0.9rem; height: 35px; }
         .price { color: var(--red); font-weight: 700; font-size: 1.1rem; margin: 5px 0; display: block; }
         
         /* Botones */
-        .btn-add { background: var(--dark); color: white; border: none; padding: 10px; width: 100%; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .btn-add { background: var(--dark); color: white; border: none; padding: 10px; width: 100%; border-radius: 12px; font-weight: 600; cursor: pointer; }
         
         /* Barra Carrito */
         .cart-bar { position: fixed; bottom: 20px; left: 15px; right: 15px; background: var(--dark); color: white; padding: 15px 20px; border-radius: 25px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 200; }
-        .btn-clear { background: none; border: none; color: #aaa; font-size: 10px; text-decoration: underline; cursor: pointer; padding: 0; }
         .btn-order { background: var(--green); color: white; padding: 12px 20px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
     </style>
 </head>
@@ -51,7 +50,7 @@
 
 <div class="menu-grid">
     <div class="card item-card burger">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Hamburguesa">
         <div class="card-info">
             <h3>Burger Especial</h3>
             <span class="price">6,50 €</span>
@@ -60,18 +59,27 @@
     </div>
 
     <div class="card item-card papas">
-        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400">
+        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400" alt="Papas">
         <div class="card-info">
             <h3>Papas Luifer</h3>
             <span class="price">3,50 €</span>
             <button class="btn-add" onclick="addToCart('Papas Luifer', 3.50, this)">+ Añadir</button>
         </div>
     </div>
+
+    <div class="card item-card bebida">
+        <img src="https://images.unsplash.com/photo-1622483767028-3f66f34a50f4?w=400" alt="Refresco">
+        <div class="card-info">
+            <h3>Coca-Cola 33cl</h3>
+            <span class="price">2,00 €</span>
+            <button class="btn-add" onclick="addToCart('Coca-Cola 33cl', 2.00, this)">+ Añadir</button>
+        </div>
+    </div>
 </div>
 
 <div class="cart-bar" id="cart-bar">
     <div>
-        <button class="btn-clear" onclick="clearCart()">Vaciar Carrito</button><br>
+        <small onclick="clearCart()" style="cursor:pointer; color:#aaa; text-decoration:underline;">Vaciar</small><br>
         <strong>Total: <span id="cart-total">0,00</span> €</strong>
     </div>
     <a href="#" class="btn-order" onclick="sendWhatsApp()">PEDIR ( <span id="cart-count">0</span> )</a>
@@ -85,7 +93,11 @@
         document.querySelectorAll('.cat-item').forEach(b => b.classList.remove('active'));
         el.classList.add('active');
         document.querySelectorAll('.item-card').forEach(card => {
-            card.style.display = (cat === 'todos' || card.classList.contains(cat)) ? 'block' : 'none';
+            if (cat === 'todos') {
+                card.style.display = 'block';
+            } else {
+                card.style.display = card.classList.contains(cat) ? 'block' : 'none';
+            }
         });
     }
 
@@ -93,10 +105,8 @@
         cart.push(name);
         total += price;
         updateUI();
-        
-        // Feedback visual
         const originalText = btn.innerText;
-        btn.innerText = "✅ ¡Añadido!";
+        btn.innerText = "✅ ¡Listo!";
         btn.style.background = "var(--green)";
         setTimeout(() => { btn.innerText = originalText; btn.style.background = "var(--dark)"; }, 700);
     }
@@ -108,31 +118,26 @@
     }
 
     function clearCart() {
-        if(confirm("¿Quieres vaciar tu carrito?")) { cart = []; total = 0; updateUI(); }
+        if(confirm("¿Vaciar carrito?")) { cart = []; total = 0; updateUI(); }
     }
 
     function sendWhatsApp() {
-        const entrega = confirm("¿Es para domicilio? (Aceptar = Domicilio / Cancelar = Recoger)");
-        const tipo = entrega ? "DOMICILIO" : "RECOGER EN LOCAL";
+        const entrega = confirm("¿A domicilio?");
         let counts = {};
         cart.forEach(x => counts[x] = (counts[x] || 0) + 1);
-        
-        let msg = `*NUEVO PEDIDO - ${tipo}*%0A`;
+        let msg = `*PEDIDO LUIFER*%0A`;
         for(let item in counts) { msg += `- ${counts[item]}x ${item}%0A`; }
         msg += `%0A*Total: ${total.toFixed(2)} €*`;
-        
         if(entrega) {
-            const dir = prompt("Introduce tu dirección:");
+            const dir = prompt("Dirección:");
             if(!dir) return;
-            msg += `%0A📍 *Dirección:* ${dir}`;
+            msg += `%0A📍 Dir: ${dir}`;
         }
         window.open(`https://wa.me/34655990610?text=${msg}`, '_blank');
     }
 
-    // Reloj de estado
     function checkStatus() {
-        const now = new Date();
-        const hour = now.getHours();
+        const hour = new Date().getHours();
         const tag = document.getElementById('status-tag');
         if(hour >= 19 && hour <= 23) {
             tag.innerText = "● ABIERTO"; tag.style.color = "var(--green)";
